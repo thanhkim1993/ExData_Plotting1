@@ -1,14 +1,11 @@
 ### Prepare the data set
-
 fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 temp <- tempfile()
 download.file(fileUrl, destfile = temp, method = "curl")
 household <- read.csv2(file = unz(temp,"household_power_consumption.txt"), 
                        na.strings = "?", colClasses = "character")
 unlink(temp)
-
 timeFilter <- as.Date(c("2007-02-01", "2007-02-02"))
-
 library(dplyr)
 household <- mutate(household, DateTime = strptime(paste(Date,Time), format = "%d/%m/%Y %H:%M:%S")) %>% 
               select(DateTime,Global_active_power:Sub_metering_3) %>%
