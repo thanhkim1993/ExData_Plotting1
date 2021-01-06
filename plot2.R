@@ -21,9 +21,9 @@ household <- mutate(household, DateTime = strptime(paste(Date,Time), format = "%
          Sub_metering_2 = as.numeric(Sub_metering_2),
          Sub_metering_3 = as.numeric(Sub_metering_3))
 
-# Save Plot 2 into "plot2.png"
+# Open PNG device; create "plot2.png" in the working directory
 png("plot2.png", width = 480, height = 480)
-# Plot 2
+# Send plot 2 to the file device
 plot(household$DateTime,household$Global_active_power, type = "l", ylab = "Global Active Power (kilowatts)", xlab = "")
-# Turn off the PNG screen device
+# Turn off the PNG file device
 dev.off()

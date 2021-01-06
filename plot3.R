@@ -21,9 +21,9 @@ household <- mutate(household, DateTime = strptime(paste(Date,Time), format = "%
          Sub_metering_2 = as.numeric(Sub_metering_2),
          Sub_metering_3 = as.numeric(Sub_metering_3))
 
-# Save Plot 3 into "plot3.png"
+# Open PNG device; create "plot3.png" in the working directory
 png("plot3.png", width = 480, height = 480)
-# Plot 3
+# Send plot 3 to the file device
 plot(household$DateTime,household$Sub_metering_1, type = "l", xlab = "", ylab = "Energy sub metering")
 lines(household$DateTime,household$Sub_metering_2, col = "red")
 lines(household$DateTime,household$Sub_metering_3, col = "blue")
