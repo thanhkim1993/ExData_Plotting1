@@ -21,17 +21,22 @@ household <- mutate(household, DateTime = strptime(paste(Date,Time), format = "%
          Sub_metering_2 = as.numeric(Sub_metering_2),
          Sub_metering_3 = as.numeric(Sub_metering_3))
 
-### Construct Plot 4
+# Save Plot 4 into "plot4.png"
+png("plot4.png", width = 480, height = 480)
 
+# Plot 4
 par(mfrow = c(2,2))
-###### Top left
+## Top left
 plot(household$DateTime,household$Global_active_power, type = "l", ylab = "Global Active Power (kilowatts)", xlab = "") 
-###### Top right
+## Top right
 plot(household$DateTime,household$Voltage, xlab = "datetime", ylab = "Voltage", type = "l") 
-###### Bottom left
+## Bottom left
 plot(household$DateTime,household$Sub_metering_1, type = "l", xlab = "", ylab = "Energy sub metering") 
 lines(household$DateTime,household$Sub_metering_2, col = "red")
 lines(household$DateTime,household$Sub_metering_3, col = "blue")
 legend(x = "topright", legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),lty = c(1,1,1), col = c("black","red","blue"),bty = "n")
-##### Bottom right
+## Bottom right
 plot(household$DateTime, household$Global_reactive_power, type = "l", xlab = "datetime", ylab ="Global_reactive_power")     
+
+# Turn off the PNG screen device
+dev.off()
